@@ -1,0 +1,426 @@
+/*
+ *  __                  __
+ * /\ \                /\ \
+ * \ \ \___   __  __   \_\ \     __
+ *  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+ *   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+ *    \ \_\ \_\/`____ \ \___,_\ \____\
+ *     \/_/\/_/`/___/> \/__,_ /\/____/
+ *                /\___/
+ *                \/__/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/hyde.
+ */
+
+
+/*
+ * Contents
+ *
+ * Global resets
+ * Sidebar
+ * Container
+ * Reverse layout
+ * Themes
+ */
+
+
+/*
+ * Global resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
+html {
+  /* Use the nicest Helvestica. Available on Mac. */
+ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica 
+ Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "LetteraProLight", monospace;
+    font-family: "InputSans", monospace;
+    font-weight: normal;
+    font-style: normal;
+/*font-family: "LetteraProLight", monospace;*/
+}
+
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 100;
+  text-align: center;
+  color: rgba(255,255,255,.5);
+  background-color: black;
+
+    height: 100%;
+}
+
+.sidebar > .container {
+    height: 100%;
+}
+
+$speed:0.25s;
+.open {
+  visibility: visible;
+  opacity: 0.8;
+  -webkit-transition: opacity $speed linear;
+  -moz-transition: opacity $speed linear;
+  -ms-transition: opacity $speed linear;
+  -o-transition: opacity $speed linear;
+  transition: opacity $speed linear;
+}
+.close {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s $speed, opacity $speed linear;
+  -moz-transition: visibility 0s $speed, opacity $speed linear;
+  -ms-transition: visibility 0s $speed, opacity $speed linear;
+  -o-transition: visibility 0s $speed, opacity $speed linear;
+  transition: visibility 0s $speed, opacity $speed linear;
+}
+
+@font-face {
+  font-family: "InputMono";
+  src: local("☺"), 
+    url('/public/fonts/InputMonoExtraLight.woff2') format('woff2'),
+    url('/public/fonts/InputMonoExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: "InputMono";
+  src: local("☺"), 
+    url('/public/fonts/InputMonoBold.woff2') format('woff2'),
+    url('/public/fonts/InputMonoBold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "InputSans";
+  src: local("☺"), 
+    url('/public/fonts/InputSansExtraLight.woff2') format('woff2'),
+    url('/public/fonts/InputSansExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: "InputSans-Italic";
+  src: local("☺"), 
+    url('/public/fonts/InputSansExtraLightItalic.woff2') format('woff2'),
+    url('/public/fonts/InputSansExtraLightItalic.woff') format('woff');
+}
+
+@font-face {
+  font-family: "InputSans-Bold";
+  src: local("☺"), 
+    url('/public/fonts/InputSansBold.woff2') format('woff2'),
+    url('/public/fonts/InputSansBold.woff') format('woff');
+}
+
+i, cite, em, var, address, dfn {
+    font-family: "InputSans-Italic";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "InputSans-Bold";
+    letter-spacing: -0.06em;
+    word-spacing: -0.04em;
+}
+
+@font-face {
+  font-family: InputSans-Bold;
+  src: local("InputSans Bold");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+    padding-top: 0.12rem;
+}
+
+//$main-color:blue;
+$red:#F92772;
+$red2:#E54B4B;
+$red3:#E62E25;
+$blue:#66D9EE;
+$grey:#CDDDDD;
+$yellow: #FBBA72;
+$main-color:$red3;
+$secondary-color:$red2;
+$black: #071E22;
+
+body {
+    color: $black;
+}
+
+.sidebar-btn {
+    position: fixed;
+    left: 0.8rem;
+    top: 0.8rem;
+    background-color: $main-color;
+    width: 2.4rem;
+    height: 2.4rem;
+    z-index: 100;
+    line-height: 2.55rem;
+    font-size: 2rem;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-family: "InputSans-Bold";
+}
+
+a {
+   color: $secondary-color; 
+}
+
+.terminal a {
+   color: white; 
+   text-decoration: underline;
+}
+
+h1, h1 a{
+    color: $main-color;
+}
+
+h2 > a, h3 > a {
+    color: #313131;
+}
+
+h2 > a:hover, h3 > a:hover {
+    color: #313131;
+    text-decoration: none;
+}
+
+code {
+    font-family: "InputMono", Menlo, Monaco, "Courier New", monospace;
+    background-color: $grey;
+}
+
+.container > .terminal {
+    font-size: 1rem;
+    font-family: "InputMono", Menlo, Monaco, "Courier New", monospace;
+    padding: 0 0;
+    margin: 0 0;
+    border: none;
+    text-align: left;
+    height: 100%;
+    width: 105%; /* leave some extra space so that content won't overflow
+                    due to inacurracy of floating point number calculation */
+}
+
+.container > .terminal > div{
+}
+
+/* Container
+ *
+ * Align the contents of the site above the proper threshold with some margin-fu
+ * with a 25%-wide `.sidebar`.
+ */
+
+.content {
+    margin-top: 0.55rem;
+    padding-top:    0rem;
+    padding-bottom: 0rem;
+    max-width: 38rem;
+    margin-right: 1.4rem;
+}
+
+.logo-btn {
+    position: fixed;
+    left: 0.8rem;
+    top: 0.8rem;
+    background-color: $main-color;
+    width: 2.4rem;
+    height: 2.4rem;
+    z-index: 100;
+    cursor: pointer;
+    color: white;
+    perspective: 800px;
+}
+
+.logo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* use the size as font size so that translate transform can be specified
+    in em, which works around the fact percentage cannot be used */
+    font-size: 2.4rem;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.logo:hover {
+    transform: rotateY( 180deg );
+}
+
+
+.logo > div{
+    position: absolute;
+    background-color: white;
+    -webkit-transition: 0.1s ease-in-out;
+    -moz-transition: 0.1s ease-in-out;
+    -ms-transition: 0.1s ease-in-out;
+    -o-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+}
+
+.logo > .bar1 {
+    left: 22%;
+    top: 20%;
+    width: 56%;
+    height: 14%;
+}
+
+.logo > .bar2 {
+    left: 40%;
+    top: 20%;
+    width: 20%;
+    height: 60%;
+}
+
+.logo-btn.clicked .bar1{
+    -webkit-transform: translate(0, 0.23em) rotate(45deg) scaleX(1.035714) scaleY(1.2142857);
+    -moz-transform: translate(0, 0.23em) rotate(45deg) scaleX(1.035714) scaleY(1.2142857);
+    -ms-transform: translate(0, 0.23em) rotate(45deg) scaleX(1.035714) scaleY(1.2142857);
+    -o-transform: translate(0, 0.23em) rotate(45deg) scaleX(1.035714) scaleY(1.2142857);
+    transform: translate(0, 0.23em) rotate(45deg) scaleX(1.035714) scaleY(1.2142857);
+}
+
+.logo-btn.clicked .bar2{
+    -webkit-transform: rotate(45deg) scaleX(0.85) scaleY(0.9666666666667) ;
+    -moz-transform: rotate(45deg) scaleX(0.85) scaleY(0.9666666666667) ;
+    -ms-transform: rotate(45deg) scaleX(0.85) scaleY(0.9666666666667) ;
+    -o-transform: rotate(45deg) scaleX(0.85) scaleY(0.9666666666667) ;
+    transform: rotate(45deg) scaleX(0.85) scaleY(0.9666666666667) ;
+}
+
+.post-title {
+    margin-top: 0.72rem;
+}
+
+.tags {
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.tag {
+    background-color: $secondary-color;
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0 0.25rem;
+    white-space: nowrap;
+}
+
+/*
+ * Reverse layout
+ *
+ * Flip the orientation of the page by placing the `.sidebar` on the right.
+ */
+
+@media (min-width: 48em) {
+  .layout-reverse .sidebar {
+    left: auto;
+    right: 0;
+  }
+  .layout-reverse .content {
+    margin-left: 2rem;
+    margin-right: 20rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .layout-reverse .content {
+    margin-left: 4rem;
+    margin-right: 22rem;
+  }
+}
+
+
+
+/*
+ * Themes
+ *
+ * As of v1.1, Hyde includes optional themes to color the sidebar and links
+ * within blog posts. To use, add the class of your choosing to the `body`.
+ */
+
+/* Base16 (http://chriskempson.github.io/base16/#default) */
+
+/* Red */
+.theme-base-08 .sidebar {
+  background-color: #ac4142;
+}
+.theme-base-08 .content a,
+.theme-base-08 .related-posts li a:hover {
+  color: #ac4142;
+}
+
+/* Orange */
+.theme-base-09 .sidebar {
+  background-color: #d28445;
+}
+.theme-base-09 .content a,
+.theme-base-09 .related-posts li a:hover {
+  color: #d28445;
+}
+
+/* Yellow */
+.theme-base-0a .sidebar {
+  background-color: #f4bf75;
+}
+.theme-base-0a .content a,
+.theme-base-0a .related-posts li a:hover {
+  color: #f4bf75;
+}
+
+/* Green */
+.theme-base-0b .sidebar {
+  background-color: #90a959;
+}
+.theme-base-0b .content a,
+.theme-base-0b .related-posts li a:hover {
+  color: #90a959;
+}
+
+/* Cyan */
+.theme-base-0c .sidebar {
+  background-color: #75b5aa;
+}
+.theme-base-0c .content a,
+.theme-base-0c .related-posts li a:hover {
+  color: #75b5aa;
+}
+
+/* Blue */
+.theme-base-0d .sidebar {
+  background-color: #6a9fb5;
+}
+.theme-base-0d .content a,
+.theme-base-0d .related-posts li a:hover {
+  color: #6a9fb5;
+}
+
+/* Magenta */
+.theme-base-0e .sidebar {
+  background-color: #aa759f;
+}
+.theme-base-0e .content a,
+.theme-base-0e .related-posts li a:hover {
+  color: #aa759f;
+}
+
+/* Brown */
+.theme-base-0f .sidebar {
+  background-color: #8f5536;
+}
+.theme-base-0f .content a,
+.theme-base-0f .related-posts li a:hover {
+  color: #8f5536;
+}

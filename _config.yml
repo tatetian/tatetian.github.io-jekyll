@@ -1,0 +1,36 @@
+# Dependencies
+markdown:           kramdown
+kramdown:
+  math_engine:      mathjax
+
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            'Tate Tian'
+tagline:          'Programming, Technology and Startup'
+description:      'I am a computer science Ph.D. candidate and a 
+                    full-stack developer who is passionate about <em>building 
+                    something useful and fun as well</em>. In this blog, I 
+                    share my thoughts on programming, technology and startup.'
+url:              http://tatetian.me
+baseurl:          /
+
+author:
+  name:           'Tate Tian'
+  url:            http://tatetian.me
+
+
+# Custom vars
+version:          2.1.0
+
+paginate:         5
+gems:               [jekyll-paginate]
+paginate_path:      "page:num"
+
+github:
+  repo:           https://github.com/tatetian
+
+gems:           [jekyll-paginate, jekyll-gist]
