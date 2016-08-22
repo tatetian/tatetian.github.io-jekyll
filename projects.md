@@ -54,7 +54,7 @@ the latency of jobs submitted to Apache Spark).
 - **Motivation.** Doing research is lonely. Can we make a difference?
 - **Core idea.** Share, read and discuss academic papers in group.
 - **Lesson learned.** Out of my own frustration in doing research and inspired
-the advice of [“solve your own problems" by Paul Graham](http://paulgraham.com/startupideas.html),
+the advice of [“solve your own problems"](http://paulgraham.com/startupideas.html) by Paul Graham,
 I started the startup project and formed a team of four developers and one
 designer.  Our initial development effort went well; we ranked top 3 in a 
 hackathon and won the first price of an entrepreneurship program. 

@@ -22,8 +22,7 @@ function getTermFitSize() {
 
 var initTermSize = getTermFitSize();
 var term = new tateterm.Terminal(containerEl, {
-    cols: initTermSize.cols,
-    rows: initTermSize.rows,
+    cursorBlink: true,
     useStyle: true,
 });
 // set red color to the exactly the same red as we use
@@ -33,11 +32,6 @@ var shell = new tateterm.Shell(term, {
     welcomeMsg: 'This is the tech blog of Tate Tian.\r\n' +
             'To explore this website, use this terminal by clicking files or typing commands.'
 });
-
-window.onresize = function() {
-    var size = getTermFitSize();
-    term.resize(size.cols, size.rows);
-};
 
 var shownWelcome = false;
 var sidebarOpen = false;

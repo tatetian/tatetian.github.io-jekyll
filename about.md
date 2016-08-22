@@ -20,11 +20,12 @@ from very low-level, hardware-facing hacks to very high-level, user-interactive 
   problem](/projects#trustedssd).
 - Invent an *OS system call* mechanism for an emerging platform? [Enable the 
   impossible](/projects#trustedlibc).
-- Architect a *cloud platform* for *Big Data analytics*? [Done right](#huadingml).
+- Architect a *cloud platform* for *Big Data analytics*? [Done right](/projects#huadingml).
 - Build a fancy *HTML5 Web app* backed by Ruby on Rails? [Won a 
   hackathon](/projects#paperclub).
+<!-- 
 - Play with sensors and chips to make *interative installation art*? [Audience amazed](/projects#touchstarrynight).
-
+-->
 My motto as a hacker is [*make something useful*](http://www.paulgraham.com/ideas.html).
 Well, actually, I can't stop making stuffs just for fun. LOL.
 
