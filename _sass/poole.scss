@@ -49,8 +49,13 @@ body {
 
 html {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.5;
+}
+@media (min-width: 500px) {
+  html {
+    font-size: 16px;
+  }
 }
 @media (min-width: 830px) {
   html {
@@ -279,22 +284,6 @@ tbody tr:nth-child(odd) th {
   color: #717171;
   background-color: #f9f9f9;
 }
-
-
-/*
- * Container
- *
- * Center the page content.
- */
-
-.container {
-  max-width: 38rem;
-  padding-left:  0rem;
-  padding-right: 0rem;
-  margin-left:  4.6rem;
-  margin-right: auto;
-}
-
 
 /*
  * Masthead

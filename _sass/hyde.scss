@@ -33,8 +33,7 @@
 
 html {
   /* Use the nicest Helvestica. Available on Mac. */
- font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica 
- Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-family: "LetteraProLight", monospace;
     font-family: "InputSans", monospace;
     font-weight: normal;
@@ -57,7 +56,7 @@ html {
     overflow: hidden;
     z-index: 100;
   text-align: center;
-  color: rgba(255,255,255,.5);
+  color: rgba(255,255,255,.8);
   background-color: black;
 
     height: 100%;
@@ -71,7 +70,7 @@ html {
 $speed:0.25s;
 .open {
   visibility: visible;
-  opacity: 0.8;
+  opacity: 0.9;
   -webkit-transition: opacity $speed linear;
   -moz-transition: opacity $speed linear;
   -ms-transition: opacity $speed linear;
@@ -211,12 +210,15 @@ code {
     margin: 0 0;
     border: none;
     text-align: left;
-    height: 100%;
-    width: 105%; /* leave some extra space so that content won't overflow
-                    due to inacurracy of floating point number calculation */
 }
 
 .container > .terminal > div{
+}
+
+.sidebar .terminal .xterm-viewport {
+    z-index: 200;
+    position: fixed;
+    right: 0;
 }
 
 /* Container
@@ -225,12 +227,10 @@ code {
  * with a 25%-wide `.sidebar`.
  */
 
-.content {
-    margin-top: 0.55rem;
-    padding-top:    0rem;
-    padding-bottom: 0rem;
+.container {
+    padding: 0 0;
+    margin: 0rem 1.4rem 0 4.6rem;
     max-width: 38rem;
-    margin-right: 1.4rem;
 }
 
 .logo-btn {

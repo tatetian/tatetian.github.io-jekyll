@@ -42,6 +42,7 @@ var toggleTerm = function() {
         sidebarEl.classList.add('close');
         btnEl.classList.remove('clicked');
         sidebarOpen = false;
+        document.body.style.overflow = "scroll";
     }
     else {
         // Run the terminal lazily util it is visible by user.
@@ -52,6 +53,7 @@ var toggleTerm = function() {
             shownWelcome = true;
         }
 
+        document.body.style.overflow = "hidden";
         btnEl.classList.add('clicked');
         sidebarEl.classList.remove('close');
         sidebarEl.classList.add('open');
