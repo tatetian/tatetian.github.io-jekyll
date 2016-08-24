@@ -64,12 +64,16 @@ I strongly recommend any entrepreneur to read the brilliant book
 [Running Lean](https://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172),
 which could have saved me from making the mistake in the first place.
 
-<!--
+
 ## <a name="touchstarrynight">TouchStarryNight: Interactive Paintings</a>
 {% tags art project, maker, Arduino, Java, Processing %}
 ![TouchStarryNight]({{ site.baseurl }}public/img/about/TouchStarryNight.png)
 
-- **Motivation.**
-- **Core Idea.**
-- **Contribution.**
--->
+- **Motivation.** For humans, touch is the most natural and intuitive way to
+interact with world. Yet, it is not until the introduction of revolutionary 
+iPhone in 2007 that touchscren became a widely-used user-interface for digital 
+devices. In this project, we want to put this even furthor: enable "touchscreen"
+on non-digital objects.
+- **Core Idea.** Enable audience to interact with the famous painting [The Starry Night by Vincent van Gogh](https://en.wikipedia.org/wiki/The_Starry_Night)
+by touching on the canvas and receive visual and audio feedbacks in an 
+immersive environment.
