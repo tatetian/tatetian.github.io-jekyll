@@ -2,38 +2,47 @@
 var sidebarEl = document.getElementsByClassName('sidebar')[0];
 var containerEl = sidebarEl.getElementsByClassName('container')[0];
 
-function getTermFitSize() {
-    var viewportWidth = Math.max(document.documentElement.clientWidth,
-                                 window.innerWidth || 0);
-    // use 16px font when the width of viewport is smaller than 830px
-    var charWidth = 11.4545;
-    var lineHeight = 27;
-    if (viewportWidth < 830) {
-        charWidth *= (16.0/18);
-        lineHeight *= (16.0/18);
-    }
 
-    var W = containerEl.clientWidth;
-    var H = containerEl.clientHeight;
-    var rows = Math.floor(H / lineHeight);
-    var cols = Math.floor(W / charWidth);
-    return {rows: rows, cols: cols};
+/*****************************************************************************
+ * Terminal and Shell Init
+ *
+ * The initlaization of terminal is intentionaly defered to the first time when
+ * the logo button is clicked. The purpose is to make sure that all required
+ * fonts are ready loaded as the terminal would use the dimensions of fonts
+ * to determine the appropriate number of columns.
+ ****************************************************************************/
+var term, shell;
+function terminalInit() {
+    if (term) return;
+
+    term = new tateterm.Terminal(containerEl, {
+        cursorBlink: true,
+        useStyle: true,
+    });
+    // set red color to the exactly the same red as we use
+    term._term.colors[1] = '#e62e25';
+    shell = new tateterm.Shell(term, {
+        promptTemplate: '%s$ ',
+        welcomeMsg: 'This is the tech blog of Tate Tian.\r\n' +
+                    'To explore this website, use this terminal by clicking files or typing commands.'
+    });
+
+    var contentLoader = new ContentLoader();
+    shell.on('loadurl', function(url) {
+        // load the url specified by the <a> tag
+        contentLoader.load(url);
+        // hide terminal
+        toggleTerm();
+    });
+
+    shell.init();
+    shell.run('ls');
 }
 
-var initTermSize = getTermFitSize();
-var term = new tateterm.Terminal(containerEl, {
-    cursorBlink: true,
-    useStyle: true,
-});
-// set red color to the exactly the same red as we use
-term._term.colors[1] = '#e62e25';
-var shell = new tateterm.Shell(term, {
-    promptTemplate: '%s$ ',
-    welcomeMsg: 'This is the tech blog of Tate Tian.\r\n' +
-            'To explore this website, use this terminal by clicking files or typing commands.'
-});
+/*****************************************************************************
+ * Terminal Open/Close Animation
+ ****************************************************************************/
 
-var shownWelcome = false;
 var sidebarOpen = false;
 var btnEl = document.getElementsByClassName('logo-btn')[0];
 var toggleTerm = function() {
@@ -45,13 +54,7 @@ var toggleTerm = function() {
         document.body.style.overflow = "scroll";
     }
     else {
-        // Run the terminal lazily util it is visible by user.
-        // The reason is that resizing window may truncate welcome message.
-        if (!shownWelcome) {
-            shell.init();
-            shell.run('ls');
-            shownWelcome = true;
-        }
+        terminalInit();
 
         document.body.style.overflow = "hidden";
         btnEl.classList.add('clicked');
@@ -62,9 +65,9 @@ var toggleTerm = function() {
 };
 btnEl.addEventListener('click', toggleTerm);
 
-function now() {
-    return (new Date).getTime() / 1000;
-}
+/*****************************************************************************
+ * Logo Animation
+ ****************************************************************************/
 
 var logoEl = document.getElementsByClassName('logo')[0];
 var rotateAngle = 0;
@@ -87,6 +90,10 @@ btnEl.addEventListener('mouseenter', rotateLogo);
 btnEl.addEventListener('mouseleave', rotateLogo);
 // Delay the first rotate a little bit in case the page is not fully loaded
 setTimeout(rotateLogo, 1500);
+
+/*****************************************************************************
+ * Content Loader
+ ****************************************************************************/
 
 function ContentLoader() {
     var self = this;
@@ -144,13 +151,5 @@ ContentLoader.prototype.load = function(url, backHistory) {
 
     xhr.send();
 };
-
-var contentLoader = new ContentLoader();
-shell.on('loadurl', function(url) {
-        // load the url specified by the <a> tag
-        contentLoader.load(url);
-        // hide terminal
-        toggleTerm();
-});
 
 })();
