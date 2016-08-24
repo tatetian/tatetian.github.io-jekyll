@@ -6,6 +6,7 @@
 <!-- KaTex -->
 <script src="{{ site.baseurl }}public/js/katex.min.js"></script>
 <script type="text/javascript">
+function renderMath() {
     var allScripts = document.getElementsByTagName('script');
     var noUpdateCopy = [];
     for (var si in allScripts) {
@@ -31,6 +32,8 @@
         }
         s.outerHTML = renderedHtml;
     }
+}
+renderMath();
 </script>
 <!-- Baidu statistics -->  
 <script type="text/javascript">

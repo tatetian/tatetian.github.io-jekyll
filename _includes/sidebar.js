@@ -136,6 +136,7 @@ ContentLoader.prototype.load = function(url, backHistory) {
         var container = oldPost.parentNode;
         container.removeChild(oldPost);
         container.appendChild(newPost);
+        if (renderMath) renderMath();
 
         // update title
         document.title = resDoc.title;
