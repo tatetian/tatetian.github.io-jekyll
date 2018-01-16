@@ -27,7 +27,7 @@ author:
 version:          2.1.0
 
 paginate:         5
-gems:               [jekyll-paginate]
+plugins:          [jekyll-paginate]
 paginate_path:      "page:num"
 
 github:
