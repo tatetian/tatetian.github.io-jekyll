@@ -9,18 +9,18 @@ interesting about applied cryptography.
 ## Overview of SGX Protected File System
 
 With the release of [Intel SGX SDK](https://github.com/01org/linux-sgx) v1.9,
-one important missing functionality of Intel® SGX SDK is finally there:
-**secure file I/O**. It is provided in a component of Intel SGX SDK, named
+one important missing functionality of Intel SGX SDK is finally there:
+*secure file I/O*. It is provided in a component of Intel SGX SDK, named
 [Intel Protected File System Library](https://software.intel.com/en-us/node/738203), 
-which enables developers to perform I/O operations inside enclaves *securely*.
+which enables developers to perform I/O operations inside enclaves securely.
 More specifically, it guarantees
 
-+ **Confidentiality of user data**: All user data is encrypted and then written
++ *Confidentiality of user data*: All user data is encrypted and then written
 to disk to prevent any data leakage;
-+ **Integrity of user data**: All user
++ *Integrity of user data*: All user
 data are read from disk and then decrypted with MAC (Message Authentication
 Code) verified to detect any data tampering;
-+ **Matching of file name**: When opening an existing file, the metadata of the
++ *Matching of file name*: When opening an existing file, the metadata of the
 to-be-openned file will be checked to ensure that the name of the file when
 created is the same as the name given to the open operation.
 
@@ -66,15 +66,17 @@ System works behind the scene.
 In SGX Protected File System, a variant of Merkle Hash Tree is used to protect
 both confidentiality and integrity of data.
 
-A **Merkle Hash Tree (MHT)**, as [defined in
+A *Merkle Hash Tree (MHT)*, as [defined in
 Wikipedia](https://en.wikipedia.org/wiki/Merkle_tree), is "a tree in which
 every leaf node is labelled with the hash of a data block and every non-leaf
 node is labelled with the cryptographic hash of the labels of its child nodes”.
 The core idea of MHT is that by organising the hash values in a tree, the
 integrity of a data block can be checked in a complexity of log(N), where N is
-the number of nodes in the tree.
-
-![A classic MHT that consists of 7 MHT nodes that covers 4 data blocks.]({{ site.baseurl }}public/img/sgx-protected-file-system/MHT-classic.png "A classic MHT that consists of 7 MHT nodes that covers 4 data blocks.")
+the number of nodes in the tree.The figure below shows a classic MHT that 
+consists of 7 MHT nodes that covers 4 data blocks.
+![A classic MHT that consists of 7 MHT nodes that covers 4 data blocks.]({{ 
+site.baseurl }}public/img/sgx-protected-file-system/MHT-classic.png "A classic 
+MHT that consists of 7 MHT nodes that covers 4 data blocks.")
 
 While the idea of MHT is simple enough, there are other considerations when
 implementing a MHT-like cryptographic construct for SGX Protected File System.
@@ -87,25 +89,25 @@ granularity of data management in file systems.
 For the above reasons, SGX Protected File Systems implements a variant of MHT
 (see the figure below) with the following characteristics:
 
-+ **Authenticated encryption**. To protect both confidentiality and integrity,
++ *Authenticated encryption*. To protect both confidentiality and integrity,
 it is more efficient to use authenticated encryption—a form of encryption which
 simultaneously provides confidentiality, integrity—rather than doing encryption
 and MAC separately. [AES-GCM
 scheme](https://en.wikipedia.org/wiki/Galois/Counter_Mode), widely accepted for
 its high throughput, is used in the implementation of SGX Protected File
 System.
-+ **Block-size nodes**. The tree consists of nodes whose sizes are all equal to
++ *Block-size nodes*. The tree consists of nodes whose sizes are all equal to
 the size of a block on disk (4KB). Every node is encrypted before writing to
 disk and decrypted after reading from disk. There are three different types of
 node:
-  1. **The metadata node** maintains the file name as well as the encryption
+  1. *The metadata node* maintains the file name as well as the encryption
 key and MAC of the root MHT node (H<sub>0</sub>). In addition, to reduce the
 disk space consumption for small files, the metadata node also contains the
 first 3KB of user data.
-  2. **A MHT node** stores the encryption keys and MACs
+  2. *A MHT node* stores the encryption keys and MACs
 of its child nodes.
-  3. **A data node** stores one block of user data.
-+ **Easy-to-append layout**. In a classic MHT, data nodes are only linked to
+  3. *A data node* stores one block of user data.
++ *Easy-to-append layout*. In a classic MHT, data nodes are only linked to
 leaf MHT nodes; yet, in this variant of MHT, data nodes are linked to leaf MHT
 nodes as well as non-leaf MHT nodes. This makes changes to the tree trivial
 when appending new data to the end of file. Another benefit is that the on-disk
@@ -248,14 +250,14 @@ While it is important to know how SGX Protected File System work, it is as
 important to know when it does NOT work. Here are the major limitations that
 the users should be aware of:
 
-+ **Limited concurrency**. At any time, only a single writer enclave or
++ *Limited concurrency*. At any time, only a single writer enclave or
 multiple reader enclaves can open a SGX-protected file; that is, multiple
 writer enclaves could corrupt a SGX-protected file when accessing the file
 concurrently.
-+ **Rollback attacks**. The users cannot detect whether he has opened an old
++ *Rollback attacks*. The users cannot detect whether he has opened an old
 (but authenticated) version of a file. In other words, SGX Protected File
 System does not guarantee the freshness of user data.
-+ **Side-channel attacks**. Some seemingly-insignificant information, such as
++ *Side-channel attacks*. Some seemingly-insignificant information, such as
 file name, file size, access time, access pattern (e.g., which blocks are
 read/written), etc, are not protected. This information could be used by
 sophisticated attackers to gain sensitive information.

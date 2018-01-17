@@ -3,6 +3,10 @@ layout: post
 title: File I/O Inside Intel SGX Enclave
 ---
 
+Update (Jan 15, 2017): Intel SGX SDK now has built-in support for secure file 
+I/O. See my blog post [Understanding SGX Protected File System]({{ site.baseurl 
+}}2017/01/15/understanding-sgx-protected-file-system/) for more.
+
 Intel Software Guard Extensions (SGX) is a set of new x86 instructions that 
 enable a new kind of programming primitive called enclave to be created, 
 launched, attested, sealed and destroyed. Enclave is a protected area of the 
